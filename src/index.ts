@@ -195,7 +195,7 @@ const final_example = async () => {
   })
 
   /**
-   * string vide car `forEach ne peut pas être attendu et lance toutes les itérations en même temps.
+   * "Message par défaut" car `forEach ne peut pas être attendu et lance toutes les itérations en même temps.
    * Btw mettre un `await` devant le `forEach` ne sert à rien.
    */
   console.log(message)
