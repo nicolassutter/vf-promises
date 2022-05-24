@@ -156,7 +156,7 @@ const ninth_example = (): string => { // retournera toujours 'truc' car .then ne
 
   return 'truc'
 }
-console.log(ninth_example())
+// console.log(ninth_example())
 
 /**
  * --------
