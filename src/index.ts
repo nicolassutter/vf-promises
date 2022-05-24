@@ -32,6 +32,8 @@ const first_example = () => {
  *
  * `async` permet de dire qu'il y aura du code "asynchrone", autrement dit, des choses à attendre, qui ne se passerons pas toutes en même temps.
  * `await` permet de spécifier quoi attendre, il ne peut être utilisé que dans une fonction déclarée `aysnc`
+ *
+ * -> À noter que les fonctions notées `async` retournent toujours une Promise.
  */
 const second_example = async () => {
   const result = await useAPI()
@@ -52,6 +54,7 @@ const third_example = () => {
       console.log('Message affiché uniquement quand la Promise est terminée (résolue)')
     })
 }
+// third_example()
 
 /**
  * --------
@@ -69,7 +72,7 @@ const fourth_example = async () => {
       console.log('Message affiché uniquement quand la Promise est terminée (résolue)')
     })
 }
-// fourth_example
+// fourth_example()
 
 const fifth_example = () => {
   /**
@@ -109,7 +112,7 @@ const sixth_example = async () => {
  */
 const seventh_example = async () => {
   /**
-   * Ici chaque await fait tout attendre, si l'API met 200ms à répondre, on attendra un total de 200 * 3ms avant de voir le console.log.
+   * Ici chaque await fait tout attendre, si l'API met 200ms à répondre, on attendra un total de 200ms * 3 avant de voir le console.log.
    */
   await useAPI()
   await useAPI()
@@ -120,7 +123,7 @@ const seventh_example = async () => {
 
 const eighth_example = async () => {
   /**
-   * Promise.all permet de "fusionner" plusieurs Promise en une seul, on peut ensuite l'attendre normalement.
+   * Promise.all permet de "fusionner" plusieurs Promise en une seule, on peut ensuite l'attendre normalement.
    * L'avantage c'est que ces trois Promise seront lancées en même temps.
    *
    * Dans un monde parfait si l'API répond TOUJOURS en 200ms, nous n'attendrons que 200ms (au lieu de 600ms) avant le console.log
@@ -145,7 +148,7 @@ const eighth_example = async () => {
 const ninth_example = (): string => { // retournera toujours 'truc' car .then ne fait pas attendre
   useAPI()
     .then((res) => {
-      console.log(res)
+      // console.log(res.status)
       return res // Ici le return ne fait rien
     })
     .catch((error) => { /* */ })
@@ -153,7 +156,7 @@ const ninth_example = (): string => { // retournera toujours 'truc' car .then ne
 
   return 'truc'
 }
-// ninth_example()
+// console.log(ninth_example())
 
 /**
  * --------
@@ -163,7 +166,7 @@ const ninth_example = (): string => { // retournera toujours 'truc' car .then ne
 const thenth_example = async () => { // ne retournera pas toujours 'truc'
   try {
     const res = await useAPI()
-    console.log(res)
+    // console.log(res.status)
     return res // Le return fonctionne comme attendu
   } catch (error) {
     /* */
@@ -173,7 +176,7 @@ const thenth_example = async () => { // ne retournera pas toujours 'truc'
 
   return 'truc'
 }
-// thenth_example()
+// console.log(thenth_example())
 
 
 /**
@@ -184,7 +187,7 @@ const thenth_example = async () => { // ne retournera pas toujours 'truc'
 
 const final_example = async () => {
   const arr = [1, 2]
-  let message = ''
+  let message = 'Message par défaut'
 
   arr.forEach(async (i) => {
     const res = await useAPI()
